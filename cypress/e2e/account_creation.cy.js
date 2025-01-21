@@ -4,32 +4,79 @@ import AccountsWeni from "../support/accountsWeni";
     const homePage = new HomePage();
     const accountsWeni = new AccountsWeni()
     
-describe('Account Creation', () => {
+describe('Account Creation and Login', () => {
 
+    const input ={
+        email: '',
+        password: '',
+        textValidEmail: 'E-mail não confirmado! Acesse a mensagem que enviamos para a sua caixa de entrada e confirme.',
+    }
+    
     describe('Create account successfully', () => {
-
-        const input = { 
+       const input ={
             email: '',
+            password: '',
+            textValidEmail: 'E-mail não confirmado! Acesse a mensagem que enviamos para a sua caixa de entrada e confirme.',
         }
 
-        it('Given I am on the account creation page', () => {
-            homePage.navigateToRegistration();
-        })
-        
-        it(`When I enter in the email field`, () => {
-        accountsWeni.elements.emailInput().should(element => { debugger })
+       it('Given I am on the account creation page', () => {
+        cy.visit('/')
+        homePage.clickRegistrationBtn();
+        cy.contains('Become a Wenier!').should('exist').and('be.visible');
+       })
 
-           // cy.wait(1000);
-           // cy.get('#greetings').should('exist').and('be.visible');
-        //    accountsWeni.typeEmail(input.email);
+       it(`When I enter "${input.email}" in the Email field`, () => {
+            accountsWeni.typeEmail(input.email)
         })
-        //it(`Then I enter ' ' in the password field`)
-      //  it(`Then I enter ' ' in the confirm password field`)
-       // it(`Then I click on the 'Sign up' button`)
-       // it(``)
 
+        it(`Then I enter "${input.password}" in the Password field`, () => {
+            accountsWeni.typePassword(input.password)
+        })
+
+        it(`Then I enter "${input.password}" in the Confirm password field`, () => {
+            accountsWeni.typeConfirmPassword(input.password)
+        })
+       
+        it('Then I click on the Sign up button', () => {
+            accountsWeni.clickSignupBtn()
+        })
+
+        it(`And I see the text: "${input.textValidEmail}"`, () => {
+            cy.contains(input.textValidEmail).should('be.visible')
+        })
+
+        it('And after confirming my account, I see the system home screen', () => {
+            cy.contains('').should('be.visible')
+        })
 
     })
 
+    describe('Login with account create', () => {
+        const input ={
+            email: 'raii.anjos@gmail.com',
+            password: 'Raissa@1234',
+        }
 
-})
+       it('Given I am on the account creation page', () => {
+        cy.visit('/')
+        cy.contains('Welcome, Wenier!').should('exist').and('be.visible');
+       })
+
+       it(`When I enter "${input.email}" in the Email field`, () => {
+        accountsWeni.typeEmailLogin(input.email)
+       })
+
+       it(`Then I enter "${input.password}" in the Password field`, () => {
+        accountsWeni.typePasswordLogin(input.password)
+       })
+
+       it('Then I click on the Log In button', () => {
+        accountsWeni.clickLoginBtn()
+        })
+
+        after(() => {
+            cy.clearAllLocalStorage(); })
+
+    })
+
+ })
