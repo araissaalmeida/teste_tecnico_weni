@@ -1,6 +1,6 @@
 class AccountsWeni{
     elements = {
-        selectLanguage: () => cy.get('.footer .language-select .container.normal'),
+        selectLanguage: () => cy.get('.footer .language-select'),
         emailInput: () => cy.get('input[name="email"][placeholder="Enter your e-mail"]'),
         passwordInput: () => cy.get('input[name="password"][placeholder="Enter a password"]'),
         confirmPasswordInput: () => cy.get('input[name="password-confirm"][placeholder="Confirm your password"]'),
@@ -137,7 +137,7 @@ class AccountsWeni{
     }
 
     clickSelectLanguage() {
-        this.elements.selectLanguage().should('have.css', 'overflow', 'hidden')
+        this.elements.selectLanguage().click()
         .and(($container) => {
           const selectedOption = $container.find('.option.selected');
           debugger
