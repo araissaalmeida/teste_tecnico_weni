@@ -38,10 +38,10 @@ A organização do repositório segue a estrutura abaixo:
 Os seguintes cenários foram automatizados:
 
 1. **Create account successfully**
-2. **Login with successful**
+2. **Step About the company filled out correctly**
 3. **Step About the company filled out correctly**
-4. **Step About the company filled out correctly**
-5. **Step Start of the Project with successful creation with Agent**
+4. **Step Start of the Project with successful creation with Agent**
+5. **Login with successful**
 
 ---
 
@@ -77,11 +77,11 @@ Os seguintes cenários foram automatizados:
 3. Instale o k6(Windows):
    - Se você usa o pacote gerenciador Chocolatey, você pode instalar o pacote k6 extraoficial com:
    ```bash
-choco install k6
+    choco install k6
    ```
    - Se você usa o Windows Package Manager, pode instalar o pacote oficial do k6 com:
    ```bash
-winget install k6 --source winget
+    winget install k6 --source winget
    ```
    - Você também pode fazer o  download da versão LTS e rodar com o instalador oficial.
 
@@ -98,11 +98,12 @@ winget install k6 --source winget
    npx cypress run --spec "cypress/e2e/account_creation.cy.js"
    ```
    ```bash
-   npx cypress run --spec "cypress/e2e/login.cy.js"
-   ```
-   ```bash
    npx cypress run --spec "cypress/e2e/organization_creation.cy.js"
    ```
+   ```bash
+   npx cypress run --spec "cypress/e2e/login.cy.js"
+   ```
+   
 
 5. Para executar os testes de performance:
    - Execute o script do k6:
@@ -111,9 +112,9 @@ winget install k6 --source winget
    ```
 
    - Execute o script do k6 e gere o relatório:
-     ```bash
-     k6 run load_tests\load_tests.js --out json=results.json
-     ```
+   ```bash
+   k6 run load_tests\load_tests.js --out json=results.json
+   ```
 
 ---
 
