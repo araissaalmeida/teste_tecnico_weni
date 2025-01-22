@@ -1,4 +1,4 @@
-class AccountsWeni{
+class AccountsWeni {
     elements = {
         selectLanguage: () => cy.get('.footer .language-select'),
         emailInput: () => cy.get('input[name="email"][placeholder="Enter your e-mail"]'),
@@ -28,7 +28,7 @@ class AccountsWeni{
         agentNameInput: () => cy.get('input[placeholder="Tainá"]'),
         agentGoalInput: () => cy.get('.unnnic-text-area__textarea.unnnic-text-area__textarea--size-md.unnnic-text-area__textarea--type-normal'),
         finishBtn: () => cy.get('.unnnic-button--primary'),
-        getStartBtn: () => cy.contains('button', 'Get started'),
+        getStartBtn: () => cy.get('button').contains('Get started'),
     }
 
     clickSelectLanguage() {
@@ -39,12 +39,12 @@ class AccountsWeni{
     }
 
     typePassword(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.passwordInput().type(text)
     }
 
-    typeConfirmPassword(text){
-        if(!text) return;
+    typeConfirmPassword(text) {
+        if (!text) return;
         this.elements.confirmPasswordInput().type(text)
     }
 
@@ -57,7 +57,7 @@ class AccountsWeni{
     }
 
     typePasswordLogin(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.passwordLogin().type(text)
     }
 
@@ -66,17 +66,17 @@ class AccountsWeni{
     }
 
     typeFirstname(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.firstnameInput().type(text)
     }
 
     typeSurname(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.surnameInput().type(text)
     }
 
     typeWhatsappNumber(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.whatsappNumberInput().type(text)
     }
 
@@ -84,16 +84,16 @@ class AccountsWeni{
         this.elements.positionSelect().click()
     }
 
-    clickOptionPositionCompany(){
+    clickOptionPositionCompany() {
         this.elements.positionOption().click()
     }
 
-    clickNextBtn(){
+    clickNextBtn() {
         this.elements.nextBtn().click()
     }
 
     typeCompanyName(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.companyNameInput().type(text)
     }
 
@@ -101,48 +101,53 @@ class AccountsWeni{
         this.elements.companySizeSelect().click()
     }
 
-    clickOptionCompanySize(){
+    clickOptionCompanySize() {
         this.elements.companySizeOption().click()
     }
 
-    clickSelectSegmentActivity(){
+    clickSelectSegmentActivity() {
         this.elements.segmentActivitySelect().click()
     }
 
-    clickOptionSegmentActivity(){
+    clickOptionSegmentActivity() {
         this.elements.segmentActivityOption().click()
     }
 
     typeProjectName(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.projectNameInput().type(text)
     }
 
-    clickNextBtnCompany(){
+    clickNextBtnCompany() {
         this.elements.nextBtnCompany().click()
     }
 
     typeAgentName(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.agentNameInput().type(text)
     }
 
     typeGoalAgent(text) {
-        if(!text) return;
+        if (!text) return;
         this.elements.agentGoalInput().type(text)
     }
 
-    clickFinishBtn(){
+    clickFinishBtn() {
         this.elements.finishBtn().click()
     }
 
+    clickGetStartedBtn() {
+        this.elements.getStartBtn().click();
+    }
+
     clickSelectLanguage() {
-        this.elements.selectLanguage().click()
-        .and(($container) => {
-          const selectedOption = $container.find('.option.selected');
-          debugger
-          expect(selectedOption.text().trim()).not.to.equal('English');
-        });
+        this.elements.selectLanguage().click();
+        cy.get('.all .option .label')
+            .filter(':visible')
+            .not(':contains("Português - Brasil")')
+            .not(':contains("Español")')
+            .first()
+            .click();
     }
 }
 

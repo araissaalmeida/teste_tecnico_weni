@@ -1,52 +1,143 @@
-# teste_tecnico_weni
-O teste consiste em passar pelas etapas de um ciclo de vida de um teste (Análise de requisitos, fase de planejamento,
-integração do caso de teste, configuração do ambiente, fase de implementação e encerramento).
-O principal requisito que vamos testar aqui
-é a etapa onde após criar sua conta na
-Plataforma, é necessário criar uma
-organização e projeto, com o intuito de
-definir seu agente.
-No formulário de criar organização e
-projeto, é necessário preencher um
-formulário de duas etapas, onde na primeira
-etapa possui 3 campos (Organization Name,
-Description e Project name), todos os
-campos desta etapa são obrigatórios, como
-você pode ver na imagem a seguir
-Após o primeiro passo, clicando
-em Next, você irá preencher o
-formulário com mais 3 itens
-(name, goal e content), apenas o
-campo Name e Goal são
-obrigatórios como é possível ver
-na imagem a seguir.
-Após preencher esses itens, a sua
-organização e projeto devem ser
-criados com sucesso, você será
-redirecionado para dentro da
-plataforma na área de Artificial
-Intelligence, possuindo as
-informações que você definiu para
-o Agente como mostra a imagem a
-seguir:
-1 - Defina os cenários de teste críticos que você acredita que deve testar para os formulários citados nas páginas anteriores, e
-para cada cenário escreva os casos de teste.
-2 - Para cada cenário crítico definido acima, escolha um caso de teste de cada cenário e crie um script de automação. Fique a
-vontade para usar a tecnologia que você se sente mais seguro e confortável.
-3 - Crie um relatório dos resultados do seu teste no formato que achar mais interessante e claro para comunicar aos principais
-interessados os resultados.
-4 - Como você poderia utilizar IAs generativas para melhorar a eficiência do ciclo de vida do teste?
+# Cypress E2E Testing with BDD
 
-Performance
-Contexto: Usando a API do JSONPlaceholder, você deverá medir o tempo de resposta e a carga que a API consegue suportar
-com diferentes volumes de requisições.
-Requisitos e execução:
-Realize um teste de carga com 100, 500 e 1000 requisições simultâneas ao endpoint /posts., após isso registre o tempo médio
-de resposta, taxa de erro e qualquer comportamento anômalo que você encontrar. Fique à vontade para utilizar a tecnologia
-que você é mais familiarizado e se sente mais confortável em realizar testes de performance (ex: JMeter, K6, script em python
-com a biblioteca locust e etc).
-Análise dos resultados e Relatório:
-Crie um relatório com os resultados do teste contendo as seguintes informações:
-● Quais foram os resultados do teste de carga para cada volume de requisições
-● Houve algum erro ou comportamento inesperado durante o teste?
-● Como você analisaria a capacidade da API de suportar maior tráfego?
+## Objetivo do Repositório
+Este repositório foi criado como parte de um teste técnico em um processo seletivo, com o objetivo de demonstrar habilidades na escrita de cenários e casos de teste para um sistema, bem como na automação de alguns desses cenários utilizando Cypress e JavaScript no modelo End-to-End (E2E) com o suporte ao formato BDD.
+
+---
+
+## Como os Cenários Foram Escritos
+Os cenários de teste foram desenvolvidos seguindo as práticas de **Behavior-Driven Development (BDD)**, utilizando a estrutura `Given-When-Then` para descrever comportamentos esperados de maneira clara e acessível.
+
+Os cenários priorizam:
+- **Cobertura funcional:** Testam os fluxos principais e alternativos da aplicação.
+- **Clareza:** Escrita simples para facilitar a compreensão e manutenção.
+- **Reutilização:** Passos comuns foram abstraídos para evitar duplicação e promover reuso.
+
+---
+
+## Estrutura do Repositório
+A organização do repositório segue a estrutura abaixo:
+
+```
+.
+├── cypress/
+│   ├── e2e/               # Cenários de teste escritos em formato BDD
+│   ├── support/           # Arquivos de suporte e comandos customizados
+│   ├── fixtures/          # Dados mockados usados nos testes
+│   └── screenshots/       # Capturas de tela geradas após a execução
+├── features/              # Arquivos .feature contendo os cenários em formato Gherkin
+├── load_tests/            # Scripts, configuração e relatório dos testes de performance
+├── README.md              # Documentação do repositório
+├── package.json           # Configurações e dependências do projeto
+└── cypress.config.js      # Configurações do Cypress
+```
+
+---
+
+## Cenários de Teste Automatizados
+Os seguintes cenários foram automatizados:
+
+1. **Create account successfully**
+2. **Login with successful**
+3. **Step About the company filled out correctly**
+4. **Step About the company filled out correctly**
+5. **Step Start of the Project with successful creation with Agent**
+
+---
+
+## Tecnologias Utilizadas
+
+- **[Cypress](https://www.cypress.io/):** Framework de testes E2E.
+- **[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript):** Linguagem principal.
+- **[k6](https://k6.io/):** Ferramenta de teste de performance.
+---
+
+## Como Clonar e Executar os Testes Localmente
+
+### Pré-requisitos
+- **Node.js** (v16 ou superior)
+- **npm**
+- **Visual Studio Code** (ou outra IDE)
+- **Cypress**
+- **k6**
+
+### Passos para executar os testes
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/araissaalmeida/teste_tecnico_weni
+   cd teste_tecnico_weni
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+3. Instale o k6(Windows):
+   - Se você usa o pacote gerenciador Chocolatey, você pode instalar o pacote k6 extraoficial com:
+   ```bash
+choco install k6
+   ```
+   - Se você usa o Windows Package Manager, pode instalar o pacote oficial do k6 com:
+   ```bash
+winget install k6 --source winget
+   ```
+   - Você também pode fazer o  download da versão LTS e rodar com o instalador oficial.
+
+4. Execute os testes E2E:
+   ```bash
+   - npx cypress open
+   ```
+   - Ou execute no modo headless:
+   ```bash
+   npx cypress run
+   ```
+   - Ou execute os testes um a um:
+   ```bash
+   npx cypress run --spec "cypress/e2e/account_creation.cy.js"
+   ```
+   ```bash
+   npx cypress run --spec "cypress/e2e/login.cy.js"
+   ```
+   ```bash
+   npx cypress run --spec "cypress/e2e/organization_creation.cy.js"
+   ```
+
+5. Para executar os testes de performance:
+   - Execute o script do k6:
+   ```bash
+   k6 run teste_tecnico_weni/load_tests/load_tests.js
+   ```
+
+   - Execute o script do k6 e gere o relatório:
+     ```bash
+     k6 run load_tests\load_tests.js --out json=results.json
+     ```
+
+---
+
+## Teste de Performance
+
+Os testes de performance foram configurados utilizando **k6**, com os seguintes objetivos:
+   - 100 VUs (30 segundos): Teste inicial para verificar o comportamento do sistema sob carga moderada.
+   - 500 VUs (30 segundos): Carga intermediária para avaliar estabilidade.
+   - 1000 VUs (30 segundos): Estresse com alta carga simultânea.
+
+As métricas podem ser visualizadas no **results.json**.
+
+---
+
+## Dados Mockados
+
+Os dados utilizados nos testes estão localizados no arquivo `cypress/fixtures/users.json`. Esses dados foram criados para simular usuários, garantindo testes confiáveis e independentes de sistemas externos.
+
+---
+
+## Considerações Finais
+Este repositório demonstra a aplicação de boas práticas na escrita de cenários de teste e na automação de testes E2E, utilizando tecnologias modernas e abordagens como BDD. Ele também explora a importância de testes de performance para assegurar a robustez do sistema.
+
+📌 LinkedIn
+📧 Raíssa Almeida dos Anjos 🐞
+
+🌟Contribuições e sugestões são bem-vindas!

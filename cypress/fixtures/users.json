@@ -1,10 +1,15 @@
 {
     "users": [
-        
         {
             "email": "raii.anjos@gmail.com",
             "password": "1@Aabbbb",
-            "roles": ["createAccount", "login", "formFilling"]
+            "roles": ["login", "formFilling"]
+        },
+        
+        {
+           "email": "testeweniqualityenginner@gmail.com",
+           "password": "1@Aabbbb",
+            "roles": ["createAccount"]
         }
     ]
 }

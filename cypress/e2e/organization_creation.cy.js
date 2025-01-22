@@ -20,6 +20,7 @@ describe('Organization and Project Creation Form', () => {
 
             it('Given I am on the Organization creation form page', () => {
                 cy.visit('/')
+                accountsWeni.clickSelectLanguage()
                 cy.contains('Welcome, Wenier!').should('exist').and('be.visible');
                 accountsWeni.typeEmailLogin(user.email)
                 accountsWeni.typePasswordLogin(user.password)
@@ -110,6 +111,7 @@ describe('Organization and Project Creation Form', () => {
         })
 
         it(`And I see the text: "${input.textSuccessfully}" `, () => {
+            cy.wait(6000)
             cy.contains(input.textSuccessfully).should('be.visible')
         })
 
