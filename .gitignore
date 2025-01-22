@@ -1,1 +1,4 @@
 node_modules
+screenshots\login.cy.js
+screenshots\account_creation.cy.js
+screenshots\organization_creation.cy.js

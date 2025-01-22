@@ -1,0 +1,10 @@
+{
+    "users": [
+        
+        {
+            "email": "raii.anjos@gmail.com",
+            "password": "1@Aabbbb",
+            "roles": ["createAccount", "login", "formFilling"]
+        }
+    ]
+}

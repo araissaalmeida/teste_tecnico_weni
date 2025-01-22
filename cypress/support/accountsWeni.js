@@ -1,5 +1,6 @@
 class AccountsWeni{
-    elements ={
+    elements = {
+        selectLanguage: () => cy.get('.footer .language-select .container.normal'),
         emailInput: () => cy.get('input[name="email"][placeholder="Enter your e-mail"]'),
         passwordInput: () => cy.get('input[name="password"][placeholder="Enter a password"]'),
         confirmPasswordInput: () => cy.get('input[name="password-confirm"][placeholder="Confirm your password"]'),
@@ -27,9 +28,12 @@ class AccountsWeni{
         agentNameInput: () => cy.get('input[placeholder="Tainá"]'),
         agentGoalInput: () => cy.get('.unnnic-text-area__textarea.unnnic-text-area__textarea--size-md.unnnic-text-area__textarea--type-normal'),
         finishBtn: () => cy.get('.unnnic-button--primary'),
-        getStartBtn: () => cy.get('[class="unnnic-button__label"][data-testid="button-label"]'),
+        getStartBtn: () => cy.contains('button', 'Get started'),
     }
 
+    clickSelectLanguage() {
+        this.elements.selectLanguage().click()
+    }
     typeEmail(email) {
         this.elements.emailInput().type(email)
     }
@@ -132,10 +136,14 @@ class AccountsWeni{
         this.elements.finishBtn().click()
     }
 
-    cllickGetStartedBtn(){
-        this.elements.getStartBtn().click()
+    clickSelectLanguage() {
+        this.elements.selectLanguage().should('have.css', 'overflow', 'hidden')
+        .and(($container) => {
+          const selectedOption = $container.find('.option.selected');
+          debugger
+          expect(selectedOption.text().trim()).not.to.equal('English');
+        });
     }
-
 }
 
 export default AccountsWeni;

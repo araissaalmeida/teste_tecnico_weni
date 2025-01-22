@@ -3,80 +3,45 @@ import AccountsWeni from "../support/accountsWeni";
 
     const homePage = new HomePage();
     const accountsWeni = new AccountsWeni()
+    const mock = require('../fixtures/users.json')
     
-describe('Account Creation and Login', () => {
-
-    const input ={
-        email: '',
-        password: '',
-        textValidEmail: 'E-mail não confirmado! Acesse a mensagem que enviamos para a sua caixa de entrada e confirme.',
-    }
+describe('Account Creation', () => {
     
     describe('Create account successfully', () => {
-       const input ={
-            email: '',
-            password: '',
+
+        const validUsers = mock.users.filter(user => user.roles.includes('createAccount'))
+        const input ={
             textValidEmail: 'E-mail não confirmado! Acesse a mensagem que enviamos para a sua caixa de entrada e confirme.',
         }
 
-       it('Given I am on the account creation page', () => {
-        cy.visit('/')
-        homePage.clickRegistrationBtn();
-        cy.contains('Become a Wenier!').should('exist').and('be.visible');
-       })
+        validUsers.forEach(user => {
 
-       it(`When I enter "${input.email}" in the Email field`, () => {
-            accountsWeni.typeEmail(input.email)
-        })
+            it('Given I am on the account creation page', () => {
+                cy.visit('/')
+                accountsWeni.clickSelectLanguage();
+                homePage.clickRegistrationBtn();
+                cy.contains('Become a Wenier!').should('exist').and('be.visible');
+               })
 
-        it(`Then I enter "${input.password}" in the Password field`, () => {
-            accountsWeni.typePassword(input.password)
+            it(`When I enter "${user.email}" in the Email field`, () => {
+                accountsWeni.typeEmail(user.email)
+            })
+    
+            it(`Then I enter "${user.password}" in the Password field`, () => {
+                accountsWeni.typePassword(user.password)
+            })
+    
+            it(`Then I enter "${user.password}" in the Confirm password field`, () => {
+                accountsWeni.typeConfirmPassword(user.password)
+            })
+           
+            it('Then I click on the Sign up button', () => {
+                accountsWeni.clickSignupBtn()
+            })
+    
+            it(`And I see the text: "${input.textValidEmail}"`, () => {
+                cy.get('#modal').contains(input.textValidEmail).should('be.visible')
+            })
         })
-
-        it(`Then I enter "${input.password}" in the Confirm password field`, () => {
-            accountsWeni.typeConfirmPassword(input.password)
-        })
-       
-        it('Then I click on the Sign up button', () => {
-            accountsWeni.clickSignupBtn()
-        })
-
-        it(`And I see the text: "${input.textValidEmail}"`, () => {
-            cy.contains(input.textValidEmail).should('be.visible')
-        })
-
-        it('And after confirming my account, I see the system home screen', () => {
-            cy.contains('').should('be.visible')
-        })
-
     })
-
-    describe('Login with account create', () => {
-        const input ={
-            email: 'raii.anjos@gmail.com',
-            password: 'Raissa@1234',
-        }
-
-       it('Given I am on the account creation page', () => {
-        cy.visit('/')
-        cy.contains('Welcome, Wenier!').should('exist').and('be.visible');
-       })
-
-       it(`When I enter "${input.email}" in the Email field`, () => {
-        accountsWeni.typeEmailLogin(input.email)
-       })
-
-       it(`Then I enter "${input.password}" in the Password field`, () => {
-        accountsWeni.typePasswordLogin(input.password)
-       })
-
-       it('Then I click on the Log In button', () => {
-        accountsWeni.clickLoginBtn()
-        })
-
-        after(() => {
-            cy.clearAllLocalStorage(); })
-
-    })
-
  })

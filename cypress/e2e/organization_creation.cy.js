@@ -1,53 +1,56 @@
 import HomePage from "../support/homePage";
 import AccountsWeni from "../support/accountsWeni";
 
-const homePage = new HomePage();
+const homePage = new HomePage()
 const accountsWeni = new AccountsWeni()
+const mock = require('../fixtures/users.json')
 
 describe('Organization and Project Creation Form', () => {
 
-    describe('Step About you', () => {
+    describe('Step About you filled out correctly', () => {
 
+        const validUsers = mock.users.filter(user => user.roles.includes('formFilling'))
         const input = {
-            email: '',
-            password: '',
             firstname: 'Raissa',
             surname: 'Almeida',
             number: '77999999999'
         }
 
-        it('Given I am on the Organization creation page', () => {
-            cy.visit('/')
-            cy.contains('Welcome, Wenier!').should('exist').and('be.visible');
-            accountsWeni.typeEmailLogin(input.email)
-            accountsWeni.typePasswordLogin(input.password)
-            accountsWeni.clickLoginBtn()
-            cy.contains('Welcome, Wenier! Tell me more about you').should('exist').and('be.visible')
-        })
+        validUsers.forEach(user => {
 
-        it(`When I enter "${input.firstname}" in the First Name field`, () => {
-            accountsWeni.typeFirstname(input.firstname)
-        })
+            it('Given I am on the Organization creation form page', () => {
+                cy.visit('/')
+                cy.contains('Welcome, Wenier!').should('exist').and('be.visible');
+                accountsWeni.typeEmailLogin(user.email)
+                accountsWeni.typePasswordLogin(user.password)
+                accountsWeni.clickLoginBtn()
+                cy.contains('Welcome, Wenier! Tell me more about you').should('exist').and('be.visible')
+            })
 
-        it(`When I enter "${input.surname}" in the Surname field`, () => {
-            accountsWeni.typeSurname(input.surname)
-        })
+            it(`When I enter "${input.firstname}" in the First Name field`, () => {
+                accountsWeni.typeFirstname(input.firstname)
+            })
+    
+            it(`When I enter "${input.surname}" in the Surname field`, () => {
+                accountsWeni.typeSurname(input.surname)
+            })
+    
+            it(`When I enter "${input.number}" in the WhatsApp Number field`, () => {
+                accountsWeni.typeWhatsappNumber(input.number)
+            })
 
-        it(`When I enter "${input.number}" in the WhatsApp Number field`, () => {
-            accountsWeni.typeWhatsappNumber(input.number)
-        })
-
-        it('Then I select an option in the Organization Position field', () => {
-            accountsWeni.clickSelectPositionCompany()
-            accountsWeni.clickOptionPositionCompany()
-        })
-
-        it('And I click on the Next button', () => {
-            accountsWeni.clickNextBtn()
+            it('Then I select an option in the Organization Position field', () => {
+                accountsWeni.clickSelectPositionCompany()
+                accountsWeni.clickOptionPositionCompany()
+            })
+    
+            it('And I click on the Next button', () => {
+                accountsWeni.clickNextBtn()
+            })
         })
     })
 
-    describe('Step About the company', () => {
+    describe('Step About the company filled out correctly', () => {
 
         const input = {
             companyName: 'Teste Automatizado',
@@ -82,7 +85,7 @@ describe('Organization and Project Creation Form', () => {
 
     })
 
-    describe('Step Start of the project', () => {
+    describe('Step Start of the Project with successful creation with Agent', () => {
 
         const input = {
             agentName: 'Blue Giraffe',
@@ -111,7 +114,7 @@ describe('Organization and Project Creation Form', () => {
         })
 
         it('And I click on the Start button', () => {
-            accountsWeni.cllickGetStartedBtn()
+            accountsWeni.clickGetStartedBtn()
         })
 
     })
