@@ -141,4 +141,4 @@ Este repositório demonstra a aplicação de boas práticas na escrita de cenár
 ## 📌 LinkedIn
 📧 [Raíssa Almeida dos Anjos 🐞](https://www.linkedin.com/in/raissaalmeidadosanjos/)
 
-🌟Contribuições e sugestões são bem-vindas!
+## 🌟Contribuições e sugestões são bem-vindas!
