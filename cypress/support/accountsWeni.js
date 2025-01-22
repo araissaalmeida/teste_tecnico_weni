@@ -1,4 +1,5 @@
 class AccountsWeni {
+    
     elements = {
         selectLanguage: () => cy.get('.footer .language-select'),
         emailInput: () => cy.get('input[name="email"][placeholder="Enter your e-mail"]'),

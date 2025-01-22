@@ -137,7 +137,7 @@ Os dados utilizados nos testes estão localizados no arquivo `cypress/fixtures/u
 ## Considerações Finais
 Este repositório demonstra a aplicação de boas práticas na escrita de cenários de teste e na automação de testes E2E, utilizando tecnologias modernas e abordagens como BDD. Ele também explora a importância de testes de performance para assegurar a robustez do sistema.
 
-📌 LinkedIn
-📧 Raíssa Almeida dos Anjos 🐞
+## 📌 LinkedIn
+📧 [Raíssa Almeida dos Anjos 🐞](https://www.linkedin.com/in/raissaalmeidadosanjos/)
 
 🌟Contribuições e sugestões são bem-vindas!

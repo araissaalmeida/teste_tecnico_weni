@@ -3,13 +3,13 @@
         {
             "email": "raii.anjos@gmail.com",
             "password": "1@Aabbbb",
-            "roles": ["login", "formFilling"]
+            "roles": ["createAccount", "login", "formFilling"]
         },
         
         {
            "email": "testeweniqualityenginner@gmail.com",
            "password": "1@Aabbbb",
-            "roles": ["createAccount"]
+            "roles": []
         }
     ]
 }
